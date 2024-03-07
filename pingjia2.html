@@ -1,0 +1,117 @@
+<header style="height: 40px;">
+    <h4 class="text-dark" style="text-align: center;">评价及建议</h4>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-8 bg-light boxStyle">
+            <div class="row">
+                <form name="theform" class="col-7" action="" onSubmit="validate()">
+                    <div class="form-group width100">
+                        <div class="width30 floatL" style="padding: 4px 0;"><label>UTCI应力级别</label></div>
+                        <div class="width70 floatR"><input class="width100 form-control d1" name="firstname"
+                                type="text" value="" size="20">
+                        </div><br><br>
+                        <div class="form-group">
+                            <div class="width30 floatL" style="padding: 4px 0;"><label>热感受</label></div>
+                            <div class="width70 floatR"><input class="width100 form-control d2" name="lastname" type="text"
+                                    value="" size="20"></div>
+                        </div><br>
+                        <div class="form-group">
+                            <div class="width30 floatL" style="padding: 4px 0;"><label>客观生理反应</label></div>
+                            <div class="width70 floatR"><input class="width100 form-control d3" name="email" src=""
+                                    type="text" value="" size="20"></div>
+                        </div><br><br>
+                        <div class="form-group">
+                            <div class="row no-gutters">
+                                <div class="width100"><input class="btn btn-success rounded" type="submit" value="查询"
+                                        style="font-weight: bold" onclick="showClassification(event)"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="width100" style="text-align: center;"><label>结果记录</label></div>
+                            <div class="table-responsive width100">
+                               <table id="classificationTable" class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col"class="customcol">UTCI值(°C)</th>
+                                        <th scope="col"class="customcol">UCI应力级别</th>
+                                        <th scope="col"class="customcol">热感受</th>
+                                        <th scope="col"class="customcol">客观生理反应</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                  </table>
+                                <!-- <textarea id="firstname" class="width100 form-control"
+                                    name="firstname" type="text" value="" size="20"></textarea>
+                                <br> -->
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row justify-content-between">
+                                    <div class="width30"><input class="btn btn-primary rounded" type="submit" value="增加"
+                                            style="font-weight: bold" onclick="add(event)"></div>
+                                    <div class="width30"><input class="btn btn-primary rounded" type="submit" value="保存"
+                                            style="font-weight: bold"></div>
+                                    <div class="width30"><input class="btn btn-danger rounded" type="reset" value="删除"
+                                            style="font-weight: bold"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-5">
+                    <img src="utcimap.png" width="90%" class="mx-auto d-block">
+                    <button type="button" class="btn btn-Info btn-lg rounded mb-2 mt-2">评价标准</button>
+                    <button type="button" class="btn btn-Info btn-lg rounded">问题反馈</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const temperatureRanges = [
+    {min: -Infinity, max: -40, description1:"极强冷应力",description2: "极冷",description3:"可能会出现严重的冻伤和低体温症等健康问题，发抖"},
+    {min: -40, max: -27, description1:"很强冷应力",description2: "非常冷",description3:"可能会出现冻伤和低体温症等健康问题，发抖"},
+    {min: -27, max: -13, description1:"强冷应力",description2: "冷",description3:"可能会出现轻微的冻伤和低体温症等健康问题，发抖"} ,
+    {min: -13, max: 0, description1:"较强冷应力",description2: "凉爽",description3:"可能会出现轻微的冻伤等健康问题、发抖"},
+    {min: 0, max: 9, description1:"轻微冷应力",description2: "略凉",description3:"人体会感到轻微寒冷，但一般不会出现健康问题"},
+    {min: 9, max: 26, description1:"无热应力",description2: "中性，舒适",description3:"人体会感到舒适，不会出现热应力或冷应力。"},
+    {min: 26, max: 32, description1:"较强热应力",description2: "温暖",description3:"人体会感到温暖，可能会出现轻微的热应力，如出汗等"},
+    {min: 32, max: 38, description1:"强热应力",description2: "热",description3:"可能会出现热应力，如出汗、脱水等。"},
+    {min: 38, max: 46, description1:"很强热应力",description2: "非常热",description3:"可能会出现严重的热应力，如热射病等，可能会出现大量出汗的现象"},
+    {min: 46, max: Infinity, description1:"极强热应力",description2: "极热",description3:"可能会出现极严重的热应力，如热射病等，可能会出现大量出汗的现象"}
+];
+    var range
+    console.log(utciResult); // 输出计算结果
+    function showClassification(e){
+        e.preventDefault(); // 阻止链接的默认行为
+        if(utciResult){
+        range = temperatureRanges.find(r => r.min <= utciResult && utciResult < r.max);
+    if(range){
+        console.log(range.description1);
+        document.querySelector('.d1').value=range.description1;
+        document.querySelector('.d2').value=range.description2;
+        document.querySelector('.d3').value=range.description3;
+    } else {
+        console.log("No matching temperature range found.");
+    }
+    }
+    }
+    function add(e){
+        e.preventDefault();
+        const tableBody = document.querySelector('#classificationTable tbody');
+            // 创建新的表格行和单元格来插入数据
+            let newRow = tableBody.insertRow();
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+            let cell3 = newRow.insertCell(2);
+            let cell4=newRow.insertCell(3);
+            // 插入数据
+            cell1.textContent = utciResult;
+            cell2.textContent = range.description1;
+            cell3.textContent = range.description2;
+            cell4.textContent=range.description3;
+    }
+ 
+</script>

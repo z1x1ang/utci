@@ -1,0 +1,45 @@
+<div class="form-group width100">
+  <div class="width30 floatL p-4" style="padding: 6px 0;"><label>UTCI应力级别</label></div>
+  <div class="width70 floatR"><input class="width100 form-control d1" name="firstname" type="text" value="" size="20">
+  </div><br><br>
+  <div class="form-group">
+      <div class="width30 floatL" style="padding: 6px auto;"><label>热感受</label></div>
+      <div class="width70 floatR"><input class="width100 form-control d2" name="lastname" type="text" value="" size="20"></div>
+  </div><br>
+  <div class="form-group">
+      <div class="width30 floatL" style="padding: 6px auto;"><label>客观生理反应</label></div>
+      <div class="width70 floatR"><input class="width100 form-control d3" name="email" src="" type="text" value="" size="20"></div>
+  </div><br><br>
+  <div class="form-group">
+      <div class="row no-gutters">
+          <div class="width100"><input class="btn btn-success rounded" type="submit" value="查询" style="font-weight: bold" onclick="showClassification(event)"></div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="width100" style="text-align: center;"><label>结果记录</label></div>
+      <div class="table-responsive width100">
+         <table id="classificationTable" class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="customcol">UTCI值(°C)</th>
+                  <th scope="col" class="customcol">UCI应力级别</th>
+                  <th scope="col" class="customcol">热感受</th>
+                  <th scope="col" class="customcol">客观生理反应</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr><td>44.79</td><td>很强热应力</td><td>非常热</td><td>可能会出现严重的热应力，如热射病等，可能会出现大量出汗的现象</td></tr></tbody>
+            </table>
+          <!-- <textarea id="firstname" class="width100 form-control"
+              name="firstname" type="text" value="" size="20"></textarea>
+          <br> -->
+      </div>
+      <div class="container-fluid">
+          <div class="row justify-content-between">
+              <div class="width30"><input class="btn btn-primary rounded" type="submit" value="增加" style="font-weight: bold"></div>
+              <div class="width30"><input class="btn btn-primary rounded" type="submit" value="保存" style="font-weight: bold"></div>
+              <div class="width30"><input class="btn btn-danger rounded" type="reset" value="删除" style="font-weight: bold"></div>
+          </div>
+      </div>
+  </div>
+</div>

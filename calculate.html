@@ -1,0 +1,74 @@
+<h1>开始计算</h1>
+    <form>
+        <p>请输入空气温度(°C):</p>
+        <input type="number" id="air-temperature" name="shuiqiya" placeholder="25">
+        <p>请输入平均辐射温度(°C):</p>
+        <input type="number" id="radiation-temperature" name="shuiqiya" placeholder="30">
+        <p>请输入风速(m/s):</p>
+        <input type="number" id="wind-speed" name="shuiqiya" placeholder="1.0">
+        <p>请输入相对湿度(%):</p>
+        <input type="number" id="relative-humidity" name="shuiqiya" placeholder="50"></br>
+        <button class="btn-primary" style="margin-top: 10px;" onclick="calculateUTCI(event)">开始计算</button>
+        <button class="btn-primary" type="reset" style="margin-top: 10px;" onclick="resetForm()">一键清空</button>
+        <button class="btn-primary" type="reset" style="margin-top: 10px;" onclick="openNewPage()">结果评价</button>
+        <p>计算结果(°C):</p>
+        <input type="number" id="utci-result" name="shuiqiya" readonly>
+    </form>
+<script>
+        // 在全局作用域中定义一个变量来存储计算结果
+        var utciResult;
+        function calculateUTCI(event) {
+        event.preventDefault(); // 阻止表单默认提交行为
+        const airTemperature = document.getElementById("air-temperature");
+        const radiationTemperature=document.getElementById("radiation-temperature");
+        const windSpeed=document.getElementById("wind-speed");
+        const relativeHumidity=document.getElementById("relative-humidity");
+        const Ta = !airTemperature.value?parseFloat(airTemperature.placeholder):parseFloat(airTemperature.value);
+        const Tmrt =!radiationTemperature.value?parseFloat(radiationTemperature.placeholder):parseFloat(radiationTemperature.value);;
+        let va = !windSpeed.value?parseFloat(windSpeed.placeholder):parseFloat(windSpeed.value);
+        const rh = !relativeHumidity.value?parseFloat(relativeHumidity.placeholder):parseFloat(relativeHumidity.value);
+
+        console.log(Ta,Tmrt,va,rh);
+        console.log(parseFloat(relativeHumidity.value))
+        // 计算饱和水汽压（hPa）
+        const es = 6.112 * Math.exp((17.67 * Ta) / (Ta + 243.5));
+        
+        // 计算实际水汽压（hPa）
+        const e = rh / 100 * es;
+        
+         // 计算风速修正项（风速小于0.5 m/s时修正为0.5 m/s）
+        va = Math.max(va, 0.5);
+        
+        // 计算UTCI
+        const utci = Ta + 0.607 * Tmrt + 0.032 * e - 0.022 * va + 0.022 * rh;
+            
+        utciResult=utci.toFixed(2);
+        // 返回计算的UTCI值
+        document.getElementById('utci-result').value=utciResult;
+    }
+    function resetForm() {
+    // 清空所有输入框的值和placeholder
+    var inputs = document.getElementsByTagName('input');
+    for(var i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+        inputs[i].placeholder = "";
+    }
+}
+function openNewPage() {
+    var utciResult = document.getElementById('utci-result').value;
+    var pingjia2=document.getElementsByClassName('nav-link')[4];
+    pingjia2.click() 
+}
+
+    // 示例使用计算函数
+    // const Ta = 25; // 空气温度 25°C
+    // const Tmrt = 30; // 平均辐射温度 30°C
+    // const va = 1.0; // 风速 1 m/s
+    // const rh = 50; // 相对湿度 50%
+    
+    // // 调用函数计算UTCI
+    // const utci = calculateUTCI(Ta, Tmrt, va, rh);
+    // // 输出结果
+     //console.log(`计算得到的UTCI为：${utci.toFixed(2)}`);
+    
+    </script>

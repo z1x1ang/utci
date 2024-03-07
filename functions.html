@@ -1,0 +1,155 @@
+<html lang="en">
+<head>
+  <title>Navbar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> 
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body{
+      background-color: rgb(236,234,233);
+    }
+    #content{
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2),0 5px 15px rgba(0,0,0,0.2);
+      margin: 60px auto;
+      width: 90%;
+      height: 500px;
+      border: 1px red solid;
+      border-radius: 10px;
+      position: relative;
+    }
+    #classificationTable{
+      font-size: small;
+      background-color: white;
+      height: 80px;
+    }
+  #classificationTable thead tr th,
+  #classificationTable td {
+  line-height: 30px; /* 确保单行文本垂直居中 */
+  overflow: hidden; /* 超出部分隐藏 */
+  white-space: nowrap; /* 防止文本换行 */
+  padding: 1px; /* 减少或移除内边距 */
+}
+.table-responsive {
+  max-height: 90px; /* 或根据需要调整 */
+  overflow: auto;
+}
+    h1{
+      font-weight: bold;
+      text-align: center;
+    }
+    p{
+      margin: auto 30px;
+      font-size: large;
+      line-height: 200%;
+      letter-spacing:2px;
+    }
+    form{
+      text-align: center;
+    }
+    .width30 {
+  width: 30%;
+}
+.width70 {
+  width: 70%;	
+}
+.floatL{
+  float: left;
+}
+.width50{
+  width: 50%;
+}
+.floatR{
+  float: right;
+}
+.btn{
+  width: 100%;
+  border-radius: 0px;
+}
+.width100{
+  width: 100%;
+}
+.row{
+
+}
+.text-muted{
+  position: absolute;
+  bottom:0px;
+}
+.boxStyle{
+  padding: 20px; 
+  border-radius: 25px; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2),0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+
+  </style>
+ </head>
+  <body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">软件介绍 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown dmenu">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                 计算依据
+                </a>
+                <div class="dropdown-menu sm-menu">
+                    <a class="dropdown-item linkintro1" href="yiju.html">计算方程</a>
+                    <a class="dropdown-item" href="pingjia.html">评价依据</a>
+                  </div>
+                </li>
+          <li class="nav-item">
+            <a class="nav-link" href="canshuru.html">参数介绍</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calculate.html">计算</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pingjia2.html">评价</a>
+          </li>
+          </ul>
+          <div class="social-part">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </div>
+        </div>
+      </nav>
+      <div id="content"></div>
+      <div class="text-muted width100" style="text-align: center;">
+        <small>新疆大学校园热环境特征与热舒适研究创新实验团队</small>
+    </div>
+        <script>
+$(document).ready(function() {
+    $("a").click(function(e) {
+        e.preventDefault(); // 阻止链接的默认行为
+
+        var page = $(this).attr("href"); // 获取链接的 href 属性值
+
+        // 检查是否是有效链接，非 '#' 或空
+        if (page && page !== "#") {
+            $("#content").load(page, function() {
+                // 内容加载完成后，调用 MathJax 重新处理新内容
+                MathJax.typesetPromise().then(() => {
+                    console.log("MathJax 已重新排版页面");
+                }).catch((err) => console.log('MathJax 排版失败: ' + err.message));
+            }); // 使用 jQuery 的 load 方法加载页面内容并在完成后重新处理 LaTeX 公式
+        }
+    });
+});
+</script>
+
+</body>
+</html>

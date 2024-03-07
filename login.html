@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTCI评估系统</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" type="text/css" href="style.css">
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->   
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="xinjiang.png" id="icon" alt="User Icon" />
+            <h1 style="font-size:20px">基于UTCI计算模型的人体舒适度评价软件</h1>
+          </div>
+          <!-- Login Form -->
+          <form id="loginForm">
+            <input type="text" id="login" class="fadeIn second" name="username" placeholder="用户名">
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="密码"> <!-- 修改了这一行 -->
+            <input type="submit" class="fadeIn fourth" value="登录">
+          </form>
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="#">Go to the Site</a>
+          </div>
+      
+        </div>
+      </div>
+      <script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // 阻止表单默认提交行为
+
+  // 获取用户输入
+  var username = document.getElementById('login').value;
+  var password = document.getElementById('password').value;
+  // 创建一个对象包含表单数据
+  var formData ={
+    username:username,
+    password:password
+  };
+  // 发送数据到服务器
+  fetch('http://localhost:3000/login', {
+    method: 'POST',
+    headers: {
+            "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => {
+    if(response.ok) {
+        return response.text(); // 或者如果您的服务器返回一个特定的成功标志，您可以在这里解析JSON。
+    }
+    throw new Error('Login failed');
+  })
+  .then(data => {
+    if(data === '请核对账号和密码') { // 服务器返回的失败消息
+        alert(data);
+    } else {
+        window.location.href = '/functions.html'; // 成功登录，重定向到functions.html
+    }
+  })
+  .catch(error => console.error(error));
+});
+
+</script>
+</body>
+</html>
+
+
