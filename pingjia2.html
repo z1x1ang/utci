@@ -24,8 +24,8 @@
                         </div><br><br>
                         <div class="form-group">
                             <div class="row no-gutters">
-                                <div class="width100"><input class="btn btn-success rounded" type="submit" value="查询"
-                                        style="font-weight: bold" onclick="showClassification(event)"></div>
+                                <div class="width100"><input class="btn btn-success rounded" type="button" value="查询"
+                                        style="font-weight: bold" onclick="showClassification()"></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -49,12 +49,12 @@
                             </div>
                             <div class="container-fluid">
                                 <div class="row justify-content-between">
-                                    <div class="width30"><input class="btn btn-primary rounded" type="submit" value="增加"
-                                            style="font-weight: bold" onclick="add(event)"></div>
-                                    <div class="width30"><input class="btn btn-primary rounded" type="submit" value="保存"
-                                            style="font-weight: bold"></div>
-                                    <div class="width30"><input class="btn btn-danger rounded" type="reset" value="删除"
-                                            style="font-weight: bold"></div>
+                                    <div class="width30"><input class="btn btn-primary rounded" type="button" value="增加"
+                                            style="font-weight: bold" onclick="add()"></div>
+                                    <div class="width30"><input class="btn btn-primary rounded" type="button" value="保存"
+                                            style="font-weight: bold"onclick="save()"></div>
+                                    <div class="width30"><input class="btn btn-danger rounded" type="button" value="删除"
+                                            style="font-weight: bold"onclick="clearContent()"></div>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +62,8 @@
                 </form>
                 <div class="col-5">
                     <img src="utcimap.png" width="90%" class="mx-auto d-block">
-                    <button type="button" class="btn btn-Info btn-lg rounded mb-2 mt-2">评价标准</button>
-                    <button type="button" class="btn btn-Info btn-lg rounded">问题反馈</button>
+                    <a href="pingjia3.html" class="btn btn-Info btn-lg rounded mb-2 mt-2">评价标准</a>
+                    <a href="test.html"  class="btn btn-Info btn-lg rounded">问题反馈</a>
                 </div>
             </div>
         </div>
@@ -71,21 +71,20 @@
 </div>
 <script>
     const temperatureRanges = [
-    {min: -Infinity, max: -40, description1:"极强冷应力",description2: "极冷",description3:"可能会出现严重的冻伤和低体温症等健康问题，发抖"},
-    {min: -40, max: -27, description1:"很强冷应力",description2: "非常冷",description3:"可能会出现冻伤和低体温症等健康问题，发抖"},
-    {min: -27, max: -13, description1:"强冷应力",description2: "冷",description3:"可能会出现轻微的冻伤和低体温症等健康问题，发抖"} ,
-    {min: -13, max: 0, description1:"较强冷应力",description2: "凉爽",description3:"可能会出现轻微的冻伤等健康问题、发抖"},
+    {min: -Infinity, max: -40, description1:"极强冷应力",description2: "极冷",description3:"可能会出现发抖、严重的冻伤和低体温症等健康问题。"},
+    {min: -40, max: -27, description1:"很强冷应力",description2: "非常冷",description3:"可能会出现发抖、冻伤和低体温症等健康问题。"},
+    {min: -27, max: -13, description1:"强冷应力",description2: "冷",description3:"可能会出现发抖、轻微的冻伤和低体温症等健康问题。"} ,
+    {min: -13, max: 0, description1:"较强冷应力",description2: "凉爽",description3:"可能会出现发抖、轻微的冻伤等健康问题。"},
     {min: 0, max: 9, description1:"轻微冷应力",description2: "略凉",description3:"人体会感到轻微寒冷，但一般不会出现健康问题"},
     {min: 9, max: 26, description1:"无热应力",description2: "中性，舒适",description3:"人体会感到舒适，不会出现热应力或冷应力。"},
     {min: 26, max: 32, description1:"较强热应力",description2: "温暖",description3:"人体会感到温暖，可能会出现轻微的热应力，如出汗等"},
     {min: 32, max: 38, description1:"强热应力",description2: "热",description3:"可能会出现热应力，如出汗、脱水等。"},
-    {min: 38, max: 46, description1:"很强热应力",description2: "非常热",description3:"可能会出现严重的热应力，如热射病等，可能会出现大量出汗的现象"},
-    {min: 46, max: Infinity, description1:"极强热应力",description2: "极热",description3:"可能会出现极严重的热应力，如热射病等，可能会出现大量出汗的现象"}
+    {min: 38, max: 46, description1:"很强热应力",description2: "非常热",description3:"可能会出现较为严重的热应力，如出现大量出汗的现象等。"},
+    {min: 46, max: Infinity, description1:"极强热应力",description2: "极热",description3:"可能会出现极严重的热应力，如热射病、大量出汗的现象等。"}
 ];
     var range
     console.log(utciResult); // 输出计算结果
-    function showClassification(e){
-        e.preventDefault(); // 阻止链接的默认行为
+    function showClassification(){
         if(utciResult){
         range = temperatureRanges.find(r => r.min <= utciResult && utciResult < r.max);
     if(range){
@@ -98,8 +97,7 @@
     }
     }
     }
-    function add(e){
-        e.preventDefault();
+    function add(){
         const tableBody = document.querySelector('#classificationTable tbody');
             // 创建新的表格行和单元格来插入数据
             let newRow = tableBody.insertRow();
@@ -113,5 +111,33 @@
             cell3.textContent = range.description2;
             cell4.textContent=range.description3;
     }
- 
+// Add a click event listener to the Save button
+function save() {
+  // Get the table element
+  const table = document.getElementById('classificationTable');
+  
+  // Convert table to worksheet
+  const worksheet = XLSX.utils.table_to_sheet(table);
+  
+  // Create a new workbook
+  const workbook = XLSX.utils.book_new();
+  
+  // Append the worksheet to the workbook
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  
+  // Generate an XLSX file
+  XLSX.writeFile(workbook, "UTCI_data.xlsx");
+};
+function clearContent() {
+    document.querySelector('#classificationTable tbody').innerHTML = '';
+}
+function loadPage() {
+    var content = document.getElementById('content');
+    var iframe = document.createElement('iframe');
+    iframe.src = 'pingjia3.html';
+    iframe.width = '100%';
+    iframe.height = '100%';
+    content.innerHTML = '';
+    content.appendChild(iframe);
+}
 </script>

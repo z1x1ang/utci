@@ -1,45 +1,84 @@
-<div class="form-group width100">
-  <div class="width30 floatL p-4" style="padding: 6px 0;"><label>UTCI应力级别</label></div>
-  <div class="width70 floatR"><input class="width100 form-control d1" name="firstname" type="text" value="" size="20">
-  </div><br><br>
-  <div class="form-group">
-      <div class="width30 floatL" style="padding: 6px auto;"><label>热感受</label></div>
-      <div class="width70 floatR"><input class="width100 form-control d2" name="lastname" type="text" value="" size="20"></div>
-  </div><br>
-  <div class="form-group">
-      <div class="width30 floatL" style="padding: 6px auto;"><label>客观生理反应</label></div>
-      <div class="width70 floatR"><input class="width100 form-control d3" name="email" src="" type="text" value="" size="20"></div>
-  </div><br><br>
-  <div class="form-group">
-      <div class="row no-gutters">
-          <div class="width100"><input class="btn btn-success rounded" type="submit" value="查询" style="font-weight: bold" onclick="showClassification(event)"></div>
-      </div>
-  </div>
-  <div class="form-group">
-      <div class="width100" style="text-align: center;"><label>结果记录</label></div>
-      <div class="table-responsive width100">
-         <table id="classificationTable" class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="customcol">UTCI值(°C)</th>
-                  <th scope="col" class="customcol">UCI应力级别</th>
-                  <th scope="col" class="customcol">热感受</th>
-                  <th scope="col" class="customcol">客观生理反应</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr><td>44.79</td><td>很强热应力</td><td>非常热</td><td>可能会出现严重的热应力，如热射病等，可能会出现大量出汗的现象</td></tr></tbody>
-            </table>
-          <!-- <textarea id="firstname" class="width100 form-control"
-              name="firstname" type="text" value="" size="20"></textarea>
-          <br> -->
-      </div>
-      <div class="container-fluid">
-          <div class="row justify-content-between">
-              <div class="width30"><input class="btn btn-primary rounded" type="submit" value="增加" style="font-weight: bold"></div>
-              <div class="width30"><input class="btn btn-primary rounded" type="submit" value="保存" style="font-weight: bold"></div>
-              <div class="width30"><input class="btn btn-danger rounded" type="reset" value="删除" style="font-weight: bold"></div>
-          </div>
-      </div>
-  </div>
-</div>
+<style>
+	.contact{
+		padding: 0px;
+        height: 500px;
+	}
+	.col-md-3{
+		background: #ff9b00;
+		padding: 4%;
+		border-top-left-radius: 0.5rem;
+		border-bottom-left-radius: 0.5rem;
+	}
+	.contact-info{
+		margin-top:10%;
+	}
+	.contact-info img{
+		margin-bottom: 15%;
+	}
+	.contact-info h2{
+		margin-bottom: 10%;
+	}
+	.col-md-9{
+		background: #fff;
+		padding: 3%;
+		border-top-right-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+	.contact-form label{
+		font-weight:600;
+	}
+	.contact-form button{
+		background: #25274d;
+		color: #fff;
+		font-weight: 600;
+		width: 25%;
+	}
+	.contact-form button:focus{
+		box-shadow:none;
+	}
+</style>
+
+	<div class="row" style="height: 500px;">
+		<div class="col-md-3">
+			<div class="contact-info">
+				<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
+                <h4>基于UTCI计算模型的人体热舒适度评价软件</h4>
+				<h3>感谢您的使用!</h3>
+				
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="fname">联系方式:</label>
+				  <div class="col-sm-10">          
+					<input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname" value="邮箱:1106211792@qq.com
+                    电话:18669766737">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">开发团队:</label>
+				  <div class="col-sm-10">          
+					<input type="text" class="form-control" id="lname" style="font-size:13px;line-height: 1.8;" value="新疆大学2023年自治区级大学生创新训练计划“新疆大学校园热环境特征与热舒适研究”创新实验团队">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="comment">参考文献:</label>
+				  <div class="col-sm-10">
+					<textarea class="form-control" rows="7" id="comment">[1]	沈永平, 王国亚. IPCC第一工作组第五次评估报告对全球气候变化认知的最新科学要[J]. 冰川冻土, 2013, 35(5): 1068-1076.Shen Y P, Wang G Y. Key findings and assessment results of IPCC WGI fifth assessment report[J]. Journal of Glaciology and Geocryology, 2013, 35(5): 1068-1076 (in Chinese)
+[2]	Meehl G A, Tebaldi C. More intense, more frequent, and longer lasting heat waves in the 21st century[J]. Science, 2004, 305(5686): 994-997doi: 10.1126/science.1098704         
+[3]	Napoli C D, Barnard C, Prudhomme C, et al. ERA5-HEAT: a global gridded historical dataset of human thermal comfort indices from climate reanalysis[J]. Geoscience Data Journal, 2020, 8(1): 1-9doi: 10.1002/gdj3.v8.1         
+[4]	Kjellstro T, Freyberg C, Lemke B, et al. Estimating population heat exposure and impacts on working people in conjunction with climate change[J]. International Journal of Biometeorology, 2018, 62(3): 291-306doi: 10.1007/s00484-017-1407-0         
+[5]	吴凡, 景元书, 李雪源, 等. 南京地区高温热浪对心脑血管疾病日死亡人数的影响[J]. 环境卫生学杂志, 2013, 3(4): 288-292.
+Wu F, Jing Y S, Li X Y, et al. Effect of heat wave on the death-toll of cardiovascular diseases in Nanjing area[J]. Journal of Environmental Hygiene Aug, 2013, 3(4): 288-292 (in Chinese)[6]	Cai W J, Zhang C, Suen H P, et al. The 2020 China report of the Lancet countdown on health and climate change[J]. The Lancet Public Health, 2020, 6(1): 64-81
+[7]	Coccolo S, Jérôme K, Scartezzini J L, et al. Outdoor human comfort and thermal stress: a comprehensive review on models and standards[J]. Urban Climate, 2016 (18): 33-57
+[8]	Potchter O, Cohen P, Lin T P, et al. Outdoor human thermal perception in various climates: a comprehensive review of approaches, methods and quantification [J]. Science of The Total Environment, 2018, 631-632(AUG.1): 390-406doi: 10.1016/j.scitotenv.2018.02.276         
+[9]	Jendritzky G, de D R, Havenith G. UTCI: why another thermal index?[J]. International Journal of Biometeorology, 2012, 56(3): 421-428
+doi: 10.1007/s00484-011-0513-7     pmid: 22187087
+                    </textarea>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+

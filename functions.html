@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> 
     <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
   <style>
     body{
       background-color: rgb(236,234,233);
@@ -40,6 +41,7 @@
     h1{
       font-weight: bold;
       text-align: center;
+      color:#60a0ff;
     }
     p{
       margin: auto 30px;
@@ -72,9 +74,7 @@
 .width100{
   width: 100%;
 }
-.row{
 
-}
 .text-muted{
   position: absolute;
   bottom:0px;
@@ -127,28 +127,23 @@
           </div>
         </div>
       </nav>
-      <div id="content"></div>
+      <div id="content" class="container-fluid"></div>
       <div class="text-muted width100" style="text-align: center;">
         <small>新疆大学校园热环境特征与热舒适研究创新实验团队</small>
     </div>
         <script>
-$(document).ready(function() {
-    $("a").click(function(e) {
-        e.preventDefault(); // 阻止链接的默认行为
-
-        var page = $(this).attr("href"); // 获取链接的 href 属性值
-
-        // 检查是否是有效链接，非 '#' 或空
-        if (page && page !== "#") {
-            $("#content").load(page, function() {
-                // 内容加载完成后，调用 MathJax 重新处理新内容
-                MathJax.typesetPromise().then(() => {
-                    console.log("MathJax 已重新排版页面");
-                }).catch((err) => console.log('MathJax 排版失败: ' + err.message));
-            }); // 使用 jQuery 的 load 方法加载页面内容并在完成后重新处理 LaTeX 公式
-        }
-    });
+$(document).on("click", "a", function(e) {
+    e.preventDefault();
+    var page = $(this).attr("href");
+    if (page && page !== "#") {
+        $("#content").load(page, function() {
+            MathJax.typesetPromise().then(() => {
+                console.log("MathJax 已重新排版页面");
+            }).catch((err) => console.log('MathJax 排版失败: ' + err.message));
+        });
+    }
 });
+
 </script>
 
 </body>
